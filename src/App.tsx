@@ -14,26 +14,16 @@ type Coffee = {
 };
 
 function App() {
-  const [error, setError] = useState<null | string>(null);
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const reponse = await fetch(
-          "https://raw.githubusercontent.com/devchallenges-io/web-project-ideas/main/front-end-projects/data/simple-coffee-listing-data.json"
-        );
-        if (reponse.ok) {
-          const data = await reponse.json();
-          setData(data);
-          setLoading(false);
-          setError(null);
-        } else {
-          setError("Error fetching data");
-        }
-      } catch (error) {
-        setError("Error fetching data");
+      const reponse = await fetch(
+        "https://raw.githubusercontent.com/devchallenges-io/web-project-ideas/main/front-end-projects/data/simple-coffee-listing-data.json"
+      );
+      if (reponse.ok) {
+        const data = await reponse.json();
+        setData(data);
       }
     }
 
